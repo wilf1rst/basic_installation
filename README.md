@@ -18,10 +18,9 @@ If you want to limit to a particular step you can use:
 	ansible-playbook -i hosts sites.yml --tags <TAGS OF THE STATE>
 
 All the following step tags are available:
-	- basic : install updated sources.list / install basic packages (ntp, vim, fail2ban, htop, iotop, subversion, git)
+	- basic : install updated sources.list / install basic packages (ntp, vim, fail2ban, htop, iotop, git, screen)
 	- ntp : start the ntp service and usure it's running
 	- nrpe : install, configure and start nrpe for nagios 
-	- sshkey : copy ssh public key of sshroot in the authorized_keys file
 	- vim : configure vim with pathogen packages, add vim-airline bar, use syntax & auto-indent
 
 You can combine the command like:
