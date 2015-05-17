@@ -1,0 +1,70 @@
+---
+# This playbook contains common plays that will be run on all nodes.
+
+- name: Install sources.list from template
+  template: src="sources.list.j2" dest=/etc/apt/sources.list
+  tags: basic  
+
+- name: Updates apt cache definitions
+  apt: update_cache=yes
+  tags: basic
+
+- name: Install prerequisite 
+  apt: name={{item}} state=present
+  with_items:
+   - ntp
+   - vim 
+   - htop 
+   - fail2ban 
+   - subversion
+   - iotop
+   - git
+   - nagios-nrpe-server
+  tags: basic
+
+- name: Enable some alias into .bashrc
+  template: src="bashrc" dest=/root/.bashrc
+  tags: basic
+
+- name: Start the ntp service
+  service: name=ntp state=started enabled=yes
+  tags: ntp
+
+- name: Install nrpe plugin for Nagios
+  apt: name=nagios-nrpe-server state=present
+  tags: nrpe
+
+- name: Create nrpe.cfg from template
+  template: >
+    src="nrpe.cfg.j2"
+    dest="{{ nagios_nrpe_server_dir }}/nrpe.cfg"
+    owner=root group=root mode=0644
+  notify: restart nagios-nrpe-server
+  tags: nrpe
+
+- name: Ensure NRPE server is running
+  service: name=nagios-nrpe-server state=started enabled=yes
+  tags: nrpe
+
+- name: Add sshroot public key in the authorized key
+  authorized_key: user={{ item.name }} key="{{ item.key }}"
+  with_items: ssh_users
+  tags: sshkey
+
+- name: Create .vim needed directory
+  file: path=/root/.vim state=directory
+  file: path=/root/.vim/bundle state=directory
+  file: path=/root/.vim/autoload state=directory
+  tags: vim
+
+- name: Download vim package manager pathogen and install it
+  get_url: url=https://tpo.pe/pathogen.vim dest=/root/.vim/autoload/pathogen.vim
+  tags: vim
+
+- name: Download vim-airline via Git
+  git: repo=https://github.com/bling/vim-airline dest=/root/.vim/bundle/vim-airline
+  tags: vim
+
+- name: Create vimrc file
+  template: src=vimrc dest=/root/.vimrc
+  tags: vim

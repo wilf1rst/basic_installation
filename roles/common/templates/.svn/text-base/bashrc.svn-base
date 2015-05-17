@@ -1,0 +1,19 @@
+# ~/.bashrc: executed by bash(1) for non-login shells.
+
+# Note: PS1 and umask are already set in /etc/profile. You should not
+# need this unless you want different defaults for root.
+# PS1='${debian_chroot:+($debian_chroot)}\h:\w\$ '
+# umask 022
+
+# You may uncomment the following lines if you want `ls' to be colorized:
+ export LS_OPTIONS='--color=auto'
+ eval "`dircolors`"
+ alias ls='ls $LS_OPTIONS'
+ alias ll='ls $LS_OPTIONS -l'
+ alias l='ls $LS_OPTIONS -lA'
+ alias sysinfo='echo -e "\n\e[1;93mVERSION\e[0m" && cat /etc/issue|head -1|cut -d" " -f1-3 && echo -e "\n\e[1;93mKERNEL\e[0m" && uname -r && echo -e "\n\e[1;93mPROCESSOR\e[0m" && cat /proc/cpuinfo | grep processor| wc -l | xargs echo -n && echo -e " processors" && cat /proc/cpuinfo |grep MHz| uniq && echo -e "\n\e[1;93mNETWORK\e[0m" && ifconfig|grep -A1 "eth"&& echo -e "\n\e[1;93mLOADAVG\e[0m" && cat /proc/loadavg && echo -e "\n\e[1;93mMEMORY\e[0m" && free -m && echo -e "\n\e[1;93mDISK SPACE\e[0m" && df -h && echo -e "\n"'
+
+# Some more alias to avoid making mistakes:
+ alias rm='rm -i'
+ alias cp='cp -i'
+ alias mv='mv -i'

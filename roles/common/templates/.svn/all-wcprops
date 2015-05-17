@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/jamendo/!svn/ver/14160/projects/sysadmin/ansible_playbooks/basic_install/roles/common/templates
+END
+sources.list.j2
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/jamendo/!svn/ver/14160/projects/sysadmin/ansible_playbooks/basic_install/roles/common/templates/sources.list.j2
+END
+nrpe.cfg.j2
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/jamendo/!svn/ver/14160/projects/sysadmin/ansible_playbooks/basic_install/roles/common/templates/nrpe.cfg.j2
+END
+vimrc
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/jamendo/!svn/ver/14160/projects/sysadmin/ansible_playbooks/basic_install/roles/common/templates/vimrc
+END
+bashrc
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/jamendo/!svn/ver/14160/projects/sysadmin/ansible_playbooks/basic_install/roles/common/templates/bashrc
+END
